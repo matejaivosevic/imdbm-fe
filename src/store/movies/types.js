@@ -1,0 +1,8 @@
+const MoviesTypes = {
+  GET_MOVIES: "GET_MOVIES",
+  GET_MOVIES_SUCCESS: "GET_MOVIES_SUCCESS",
+  GET_MOVIES_FAILURE: "GET_MOVIES_FAILURE",
+  ADD_MOVIE: "ADD_MOVIE"
+};
+
+export default MoviesTypes;
