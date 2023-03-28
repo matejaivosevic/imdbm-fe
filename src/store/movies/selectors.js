@@ -17,3 +17,10 @@ export const selectMoviesItems = createSelector(
     return movies.movies;
   },
 );
+
+export const selectAllGenres = createSelector(
+  [selectMovies],
+  (movies) => {
+    return movies.genres;
+  },
+);

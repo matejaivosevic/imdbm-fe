@@ -1,22 +1,28 @@
-import { takeLatest, call, put, all } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 
-import * as services from "../../utils/services/movies";
-import { getMoviesSuccess, getMoviesFailure } from "./actions";
+import services from "./apis";
+import { getAllGenresSuccess, getAllGenresFailure, getMoviesFailure, getMoviesSuccess } from "./actions";
 import MoviesTypes from "./types";
 
 export function* getMoviesAsync() {
   try {
-    // const response = yield call(services.getMovies);
-    // yield put(getMoviesSuccess(response.data));
+    const response = yield call(services.getAllMoviesRequest);
+    yield put(getMoviesSuccess(response.data.results));
   } catch (error) {
-    //yield put(getMoviesFailure(error.message));
+    yield put(getMoviesFailure(error.message));
   }
 }
 
-export function* getMovies() {
-  yield takeLatest(MoviesTypes.GET_MOVIES, getMoviesAsync);
+export function* getAllGenres() {
+  try {
+    const response = yield call(services.getAllGenresRequest);
+    yield put(getAllGenresSuccess(response.data));
+  } catch (error) {
+    yield put(getAllGenresFailure(error.message));
+  }
 }
 
 export function* moviesSagas() {
-  yield all([call(getMovies)]);
+  yield takeLatest(MoviesTypes.GET_MOVIES, getMoviesAsync);
+  yield takeLatest(MoviesTypes.GET_ALL_GENRES, getAllGenres);
 }

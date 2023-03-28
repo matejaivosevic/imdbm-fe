@@ -1,23 +1,27 @@
-import React from "react";
+import MovieList from "components/MovieList";
+import MovieListItem from "components/MovieList/MovieListItem";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import withReduxSaga from "..";
 
-import { getMovies } from "../store/movies/actions";
+import { getAllGenres, getMovies } from "../store/movies/actions";
 import {
   selectIsMoviesFetching,
   selectMoviesItems,
 } from "../store/movies/selectors";
 
-const Home = ({ movies, isLoading }) => {
+const Home = ({ movies, isLoading, getMovies }) => {
+  useEffect(() => {
+    getMovies();
+  }, []);
+
+  console.log(movies);
+
   return (
     <div>
-      <div className="detail">
-        <ul>
-          {isLoading && <div>is loading...</div>}
-        </ul>
-      </div>
+      <MovieList movies={movies} />
     </div>
   );
 };
