@@ -23,3 +23,43 @@
 body {
   background: var(--bodyBg);
 }
+
+.all-movies {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 1rem;
+}
+
+.movie-item {
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 0 3rem 2rem;
+}
+
+.navbar {
+  border-bottom: 1px solid lightgray;
+}
+
+.movie-item {
+  border-radius: 2px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.movie-item:hover {
+  transform:scale(1.05);
+}
+
+.movie-item-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.movie-item-details span {
+  font-weight: 500;
+  font-size: small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
+}

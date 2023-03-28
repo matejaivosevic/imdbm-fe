@@ -2,12 +2,8 @@ import MoviesTypes from "./types";
 
 const initialState = {
   isFetching: false,
-  movies: [
-    {
-      title: "The Lord of The Rings",
-      rating: 4.3
-    }
-  ],
+  movies: [],
+  genres: [],
   errorMessage: undefined,
 };
 
@@ -20,10 +16,11 @@ const moviesReducer = (state = initialState, action) => {
       };
 
     case MoviesTypes.GET_MOVIES_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         isFetching: false,
-        posts: action.payload,
+        movies: action.payload,
       };
 
     case MoviesTypes.GET_MOVIES_FAILURE:
@@ -32,6 +29,25 @@ const moviesReducer = (state = initialState, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
+      case MoviesTypes.GET_ALL_GENRES:
+        return {
+          ...state,
+          isFetching: true,
+        };
+  
+      case MoviesTypes.GET_ALL_GENRES_SUCCESS:
+        return {
+          ...state,
+          isFetching: false,
+          genres: action.payload.genres,
+        };
+  
+      case MoviesTypes.GET_ALL_GENRES_FAILURE:
+        return {
+          ...state,
+          isFetching: false,
+          errorMessage: action.payload,
+        };
 
     default:
       return state;
