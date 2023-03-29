@@ -5,12 +5,16 @@ const getAllGenresRequest = async () => {
   return await genresInstance.get(`/${GENRES.allGenres}`);
 };
 
-const getAllMoviesRequest = async (page) => {
-    return await genresInstance.get(`/${GENRES.allMovies}?page=${page}`);
+const getMoviesRequest = async ({page, genre}) => {
+    if(!genre) {
+      return await genresInstance.get(`/${GENRES.allMovies}?page=${page}`);
+    } else {
+      return await genresInstance.get(`/${GENRES.movieGenres}?page=${page}&with_genres=${genre}`);
+    }
   };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getAllGenresRequest,
-    getAllMoviesRequest
+    getMoviesRequest
 };

@@ -24,3 +24,10 @@ export const selectAllGenres = createSelector(
     return movies.genres;
   },
 );
+
+export const selectPage = createSelector(
+  [selectMovies],
+  (movies) => {
+    return movies.page;
+  },
+);

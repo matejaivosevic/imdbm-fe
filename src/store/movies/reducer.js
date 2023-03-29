@@ -4,7 +4,8 @@ const initialState = {
   isFetching: false,
   movies: [],
   genres: [],
-  errorMessage: undefined
+  errorMessage: undefined,
+  page: 1
 };
 
 const moviesReducer = (state = initialState, action) => {

@@ -5,5 +5,5 @@ export const IMAGE_API = 'https://image.tmdb.org/t/p/w440_and_h660_face';
 export const GENRES = {
     allMovies: 'movie/popular',
     allGenres: `genre/movie/list`,
-    movieGenres: `to do`
+    movieGenres: `discover/movie`
 }

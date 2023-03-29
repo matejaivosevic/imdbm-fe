@@ -1,9 +1,10 @@
 import MoviesTypes from "./types";
 
-export const getMovies = (page) => {
+export const getMovies = (page, genre) => {
   return {
     type: MoviesTypes.GET_MOVIES,
-    page
+    page,
+    genre
   };
 };
 

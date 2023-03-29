@@ -6,7 +6,7 @@ import MoviesTypes from "./types";
 
 export function* getMoviesAsync(payload) {
   try {
-    const response = yield call(services.getAllMoviesRequest, payload.page);
+    const response = yield call(services.getMoviesRequest, payload);
     yield put(getMoviesSuccess(response.data.results));
   } catch (error) {
     yield put(getMoviesFailure(error.message));

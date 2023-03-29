@@ -1,17 +1,24 @@
 import withReduxSaga from 'index';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { getMovies } from 'store/movies/actions';
-import { selectMoviesItems } from 'store/movies/selectors';
+import { selectMoviesItems, selectPage } from 'store/movies/selectors';
 
-const PaginationBar = ({ getMovies }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const PaginationBar = ({ getMovies, page }) => {
+  const router = useRouter();
+  const genre = router.query && router.query.id || null;
+  const [currentPage, setCurrentPage] = useState(page);
 
   useEffect(() => {
-    getMovies(currentPage);
-  }, [currentPage, getMovies]);
+    getMovies(currentPage, genre);
+  }, [currentPage, getMovies, genre]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [genre])
 
   return (
     <div className="pagination-bar col-md-12">
@@ -35,13 +42,14 @@ PaginationBar.getInitialProps = async (props) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  movies: selectMoviesItems
+  movies: selectMoviesItems,
+  page: selectPage
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMovies: (page) => {
-      return dispatch(getMovies(page));
+    getMovies: (page, genre) => {
+      return dispatch(getMovies(page, genre));
     }
   };
 };
