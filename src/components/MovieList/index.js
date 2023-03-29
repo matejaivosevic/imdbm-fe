@@ -11,11 +11,7 @@ import { useEffect } from "react";
 import { getMovies } from "store/movies/actions";
 import { Spinner } from "react-bootstrap";
 
-const MovieList = ({movies, getMovies, isLoading}) => {
-  useEffect(() => {
-    getMovies();
-  }, []);
-
+const MovieList = ({movies, isLoading}) => {
   return (
     <>
     {!isLoading ? 

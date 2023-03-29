@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { getAllGenres } from 'store/movies/actions';
+import { getAllGenres, resetPage } from 'store/movies/actions';
 import { connect, useDispatch } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import withReduxSaga from "../..";
@@ -20,6 +20,10 @@ const NavMenu = ({ genres, getAllGenres }) => {
   useEffect(() => {
     getAllGenres();
   }, []);
+
+  const genreSelected = (name, id) => {
+    router.push(`/genre?name=${name.toLowerCase()}&id=${id}`);
+  }
 
   return (
     <Navbar bg="light" expand="lg" sticky='top'>
@@ -37,7 +41,7 @@ const NavMenu = ({ genres, getAllGenres }) => {
             title="Genres" 
             id="navbarScrollingDropdown">
               {genres.length && genres.map(genre => (
-                <NavDropdown.Item key={genre.id} onClick={() => router.push(`/${genre.name.toLowerCase()}`)}>
+                <NavDropdown.Item key={genre.id} onClick={() => genreSelected(genre.name, genre.id)}>
                     {genre.name}
                 </NavDropdown.Item>
               ))}
@@ -73,7 +77,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAllGenres: () => {
             return dispatch(getAllGenres());
-    },
+        },
+        resetPage: () => {
+          return dispatch(resetPage());
+        }
+
 };
 };
 
