@@ -4,7 +4,7 @@ const initialState = {
   isFetching: false,
   movies: [],
   genres: [],
-  errorMessage: undefined,
+  errorMessage: undefined
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -16,7 +16,6 @@ const moviesReducer = (state = initialState, action) => {
       };
 
     case MoviesTypes.GET_MOVIES_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         isFetching: false,
@@ -47,8 +46,7 @@ const moviesReducer = (state = initialState, action) => {
           ...state,
           isFetching: false,
           errorMessage: action.payload,
-        };
-
+      };
     default:
       return state;
   }

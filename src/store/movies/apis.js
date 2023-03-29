@@ -5,8 +5,8 @@ const getAllGenresRequest = async () => {
   return await genresInstance.get(`/${GENRES.allGenres}`);
 };
 
-const getAllMoviesRequest = async () => {
-    return await genresInstance.get(`/${GENRES.allMovies}`);
+const getAllMoviesRequest = async (page) => {
+    return await genresInstance.get(`/${GENRES.allMovies}?page=${page}`);
   };
 
 // eslint-disable-next-line import/no-anonymous-default-export

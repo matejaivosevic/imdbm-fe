@@ -4,9 +4,9 @@ import services from "./apis";
 import { getAllGenresSuccess, getAllGenresFailure, getMoviesFailure, getMoviesSuccess } from "./actions";
 import MoviesTypes from "./types";
 
-export function* getMoviesAsync() {
+export function* getMoviesAsync(payload) {
   try {
-    const response = yield call(services.getAllMoviesRequest);
+    const response = yield call(services.getAllMoviesRequest, payload.page);
     yield put(getMoviesSuccess(response.data.results));
   } catch (error) {
     yield put(getMoviesFailure(error.message));

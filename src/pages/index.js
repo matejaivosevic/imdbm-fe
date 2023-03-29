@@ -1,27 +1,20 @@
 import MovieList from "components/MovieList";
-import MovieListItem from "components/MovieList/MovieListItem";
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import withReduxSaga from "..";
 
-import { getAllGenres, getMovies } from "../store/movies/actions";
+import { getMovies } from "../store/movies/actions";
 import {
   selectIsMoviesFetching,
   selectMoviesItems,
 } from "../store/movies/selectors";
 
-const Home = ({ movies, isLoading, getMovies }) => {
-  useEffect(() => {
-    getMovies();
-  }, []);
-
-  console.log(movies);
-
+const Home = ({}) => {
   return (
     <div>
-      <MovieList movies={movies} />
+      <MovieList />
     </div>
   );
 };
@@ -42,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getMovies: () => {
       return dispatch(getMovies());
-    },
+    }
   };
 };
 
